@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_01vy4nt" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.7.2">
+  <bpmn:process id="sampleemail" name="Sample Email" isExecutable="true">
+    <bpmn:startEvent id="Event_1c89ct3" name="create order">
+      <bpmn:outgoing>Flow_17dbn9i</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_17dbn9i" sourceRef="Event_1c89ct3" targetRef="Activity_0w457xn" />
+    <bpmn:sequenceFlow id="Flow_07r8iw8" sourceRef="Activity_0w457xn" targetRef="Activity_1qnm3qs" />
+    <bpmn:userTask id="Activity_0w457xn" name="Review Order">
+      <bpmn:incoming>Flow_17dbn9i</bpmn:incoming>
+      <bpmn:outgoing>Flow_07r8iw8</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:endEvent id="Event_1iitgtr">
+      <bpmn:incoming>Flow_1x273nz</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1x273nz" sourceRef="Activity_1qnm3qs" targetRef="Event_1iitgtr" />
+    <bpmn:serviceTask id="Activity_1qnm3qs" name="Send mail">
+      <bpmn:extensionElements>
+        <camunda:connector>
+          <camunda:inputOutput>
+            <camunda:inputParameter name="from">parameswar.vangala@gmail.com</camunda:inputParameter>
+            <camunda:inputParameter name="to">parameswara.vangala@gmail.com</camunda:inputParameter>
+            <camunda:inputParameter name="subject">Hello !</camunda:inputParameter>
+            <camunda:inputParameter name="test">Hello !
+This is sample email from bpmn process.</camunda:inputParameter>
+          </camunda:inputOutput>
+          <camunda:connectorId>mail-send</camunda:connectorId>
+        </camunda:connector>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_07r8iw8</bpmn:incoming>
+      <bpmn:outgoing>Flow_1x273nz</bpmn:outgoing>
+    </bpmn:serviceTask>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="sampleemail">
+      <bpmndi:BPMNEdge id="Flow_17dbn9i_di" bpmnElement="Flow_17dbn9i">
+        <di:waypoint x="208" y="120" />
+        <di:waypoint x="260" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_07r8iw8_di" bpmnElement="Flow_07r8iw8">
+        <di:waypoint x="360" y="120" />
+        <di:waypoint x="420" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1x273nz_di" bpmnElement="Flow_1x273nz">
+        <di:waypoint x="520" y="120" />
+        <di:waypoint x="582" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Event_1c89ct3_di" bpmnElement="Event_1c89ct3">
+        <dc:Bounds x="172" y="102" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="160" y="145" width="61" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0l5tfjg_di" bpmnElement="Activity_0w457xn">
+        <dc:Bounds x="260" y="80" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1iitgtr_di" bpmnElement="Event_1iitgtr">
+        <dc:Bounds x="582" y="102" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1d6xm4a_di" bpmnElement="Activity_1qnm3qs">
+        <dc:Bounds x="420" y="80" width="100" height="80" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
